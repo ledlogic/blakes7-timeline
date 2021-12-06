@@ -1,7 +1,7 @@
 
 // Define domElement and sourceFile
 var domElement = "#timeline";
-var sourceFile = "csv/timeline.csv";
+var sourceFile = "csv/timeline.csv?t=" + (new Date()).getTime();
 
 // Read in the data and construct the timeline
 d3.csv(sourceFile, function(dataset) {

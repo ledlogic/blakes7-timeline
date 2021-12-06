@@ -1,12 +1,15 @@
-start,end,label
-1,1.99,S1E1 The Way Back
-2,2.99,S1E2 Space Fall
-3,3.99,S1E3 Cygnus Alpha
-4,4.99,S1E4 Time Squad
-5,5.99,S1E5 The Web
-6,6.99,S1E6 Seek-Locate-Destroy
-7,7.99,S1E7 Mission to Destiny
-8,8.99,S1E8 Duel
-9,9.99,S1E9 Project Avalon
-10,10.99,S1E10 Breakdown
-11,11.99,S1E11 Bounty
+series,start,end,label
+1,1,1.99,The Way Back
+1,2,2.99,Space Fall
+1,3,3.99,Cygnus Alpha
+1,4,4.99,Time Squad
+1,5,5.99,The Web
+1,6,6.99,Seek-Locate-Destroy
+1,7,7.99,Mission to Destiny
+1,8,8.99,Duel
+1,9,9.99,Project Avalon
+1,10,10.99,Breakdown
+1,11,11.99,Bounty
+1,12,12.99,Deliverance
+1,13,13.99,Orac
+2,14,14.99,Redemption

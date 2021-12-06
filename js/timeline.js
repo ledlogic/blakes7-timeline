@@ -6,7 +6,6 @@
 //
 
 function timeline(domElement) {
-
     // chart geometry
     var margin = {top: 20, right: 20, bottom: 20, left: 20},
         outerWidth = $("#timeline").width(),
@@ -52,81 +51,14 @@ function timeline(domElement) {
     //
 
     timeline.data = function(items) {
-
         var tracks = [],
             instantOffset = 100;
 
         data.items = items;
 
-        function showItems(n) {
-            var count = 0, n = n || 10;
-            console.log("\n");
-            items.forEach(function (d) {
-                count++;
-                if (count > n) return;
-                console.log((d.start) + " - " + (d.end) + ": " + d.label);
-            })
-        }
-
-        function compareAscending(item1, item2) {
-            // Every item must have two fields: 'start' and 'end'.
-            var result = item1.start - item2.start;
-            // earlier first
-            if (result < 0) { return -1; }
-            if (result > 0) { return 1; }
-            // longer first
-            result = item2.end - item1.end;
-            if (result < 0) { return -1; }
-            if (result > 0) { return 1; }
-            return 0;
-        }
-
-        function compareDescending(item1, item2) {
-            // Every item must have two fields: 'start' and 'end'.
-            var result = item1.start - item2.start;
-            // later first
-            if (result < 0) { return 1; }
-            if (result > 0) { return -1; }
-            // shorter first
-            result = item2.end - item1.end;
-            if (result < 0) { return 1; }
-            if (result > 0) { return -1; }
-            return 0;
-        }
-
-        function calculateTracks(items, sortOrder, timeOrder) {
-            var i, track;
-
-            sortOrder = sortOrder || "descending"; // "ascending", "descending"
-            timeOrder = timeOrder || "backward";   // "forward", "backward"
-
-            function sortBackward() {
-                // older items end deeper
-                items.forEach(function (item) {
-                    for (i = 0, track = 0; i < tracks.length; i++, track++) {
-                        if (item.end < tracks[i]) { break; }
-                    }
-                    item.track = track;
-                    tracks[track] = item.start;
-                });
-            }
-            function sortForward() {
-                // younger items end deeper
-                items.forEach(function (item) {
-                    for (i = 0, track = 0; i < tracks.length; i++, track++) {
-                        if (item.start > tracks[i]) { break; }
-                    }
-                    item.track = track;
-                    tracks[track] = item.end;
-                });
-            }
-
-            data.items.sort(compareAscending);
-        }
-
         // Convert yearStrings into dates
-        data.items.forEach(function (item){
-            item.start = (item.start);
+        data.items.forEach(function (item) {
+        	item.start = parseFloat(item.start);
             if (item.end == "") {
                 //console.log("1 item.start: " + item.start);
                 //console.log("2 item.end: " + item.end);
@@ -135,16 +67,11 @@ function timeline(domElement) {
                 item.instant = true;
             } else {
                 //console.log("4 item.end: " + item.end);
-                item.end = (item.end);
+                item.end = parseFloat(item.end);
                 item.instant = false;
             }
-
         });
 
-        // Show real data
-        calculateTracks(data.items, "ascending", "forward");
-
-        data.nTracks = tracks.length;
         data.min = d3.min(data.items, function (d) { return d.start; });
         data.max = d3.max(data.items, function (d) { return d.end; });
 
@@ -172,9 +99,13 @@ function timeline(domElement) {
         band.xScale = d3.scaleLinear()
             .domain([data.min, data.max])
             .range([0, band.w]);
-
+            
         band.yScale = function (track) {
             return band.trackOffset + track * band.trackHeight;
+        };
+        
+        band.yCalc = function(d) {
+        	return (d.series-1) * 20;
         };
 
         band.g = chart.append("g")
@@ -190,8 +121,8 @@ function timeline(domElement) {
         var items = band.g.selectAll("g")
             .data(data.items)
             .enter().append("svg")
-            .attr("y", function (d) { return band.yScale(d.track); })
-            .attr("height", band.itemHeight)
+            .attr("y", function (d) { return (band.yCalc(d)); })
+            //.attr("height", band.itemHeight)
             .attr("class", function (d) { return d.instant ? "part instant" : "part interval";});
 
         var intervals = d3.select("#band" + bandNum).selectAll(".interval");
