@@ -1,0 +1,19 @@
+/* st-print.css */
+
+label {
+	display: none;
+}
+
+.st-button {
+	display: none;
+}
+
+.st-header {
+	display: none;
+}
+
+#systemName {
+	border: none;
+	font-family: 'Microgramma Extd D Medium', 'Microgramma Extd D', sans-serif;
+	font-size: 26px;
+}

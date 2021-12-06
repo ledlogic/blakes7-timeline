@@ -1,0 +1,97 @@
+/* st.css */
+
+* {
+	font-family: 'AYT Avalon', sans-serif;
+}
+
+p {
+	font-family: 'AYT Avalon', sans-serif;
+}
+
+body {
+	margin: 16px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: 'Microgramma Extd D Medium', 'Microgramma Extd D', sans-serif;
+	text-transform: uppercase;
+}
+
+h1 {
+	font-size: 26px;
+}
+
+h4 {
+	font-size: 0.8em;
+}
+
+.st-hidden {
+	display: none;	
+}
+
+.st-actions {
+	margin: 20px 0 20px 0;
+}
+
+#systemName {
+	font-weight: bold;
+	text-transform: uppercase;
+}
+
+.st-star-attr {
+	padding: 0.2em;
+}
+
+.st-star-attr label {
+	font-weight: bold;
+	padding: 0.2em;
+	text-transform: uppercase;
+}
+
+.st-button {
+	border: 2px solid #3498db;
+	color: #3498db;
+	font-size: 0.8em;
+	text-transform: uppercase;
+	padding: 6px 22.5px 6px 22.5px;
+	text-decoration: none;
+}
+
+.st-button:hover {
+	background-color: #3498db;
+	color: #ffffff;
+}
+
+.st-section {
+	border-left: 1px solid #000066;
+	border-right: 1px solid #000066;
+	max-width: 600px;
+}
+
+.st-position-stars {
+	border-color: #FF8C00;
+	color: #FF8C00;
+}
+
+.st-position-inner {
+	border-color: #660000;
+	color: #660000;
+}
+
+.st-position-goldilocks {
+	border-color: #006600;
+	color: #006600;
+}
+
+.st-position-outer {
+	border-color: #000066;
+	color: #000066;
+}
+
+.st-government {
+	font-style: italic;
+}
+
+.st-remove-government {
+	padding: 0 0.2em 0 0.2em;
+}
