@@ -1,17 +1,17 @@
-/* st-timeline.js */
+/* st-events.js */
 
-st.timeline = {
+st.events = {
 	fields: [],
 	data:[],
 	min: null,
 	max: null,
 	
 	init: function() {
-		st.log("init timeline");
-		st.timeline.loadCsv("csv/st-timeline.csv");
+		st.log("init events");
+		st.events.loadCsv("csv/st-events.csv");
 	},
 	loadCsv: function(uri) {
-		st.log("loading timeline from csv, uri[" + uri + "]");
+		st.log("loading events from csv, uri[" + uri + "]");
 		
 		var uriArr = uri.split(":");
 		var csv = uriArr[0];
@@ -22,34 +22,34 @@ st.timeline = {
 			download: true,
 			header: true,
 			complete: function(d) {
-				st.timeline.response(d,n);
+				st.events.response(d,n);
 			},
 			encoding: "UTF-8"
 		});
 	},
 	response: function(d, name) {
-		st.log("timeline response");
+		st.log("events response");
 		
-		//st.log(d);
-		//st.log(d.data);
+		st.log(d);
+		st.log(d.data);
 		var fields = d.meta.fields;
 		var data = d.data;
 		
 		//st.log(fields);
 		//st.log(data);
 		
-		st.timeline.fields = fields;
-		st.timeline.data = data;
+		st.events.fields = fields;
+		st.events.data = data;
 
-		st.timeline.detBoundaries();		
-	
-		setTimeout(st.events.init, 10);
+		st.events.detBoundaries();		
+
+		setTimeout(st.render.render, 10);
 	},
 	detBoundaries: function() {
-		st.log("timeline detBoundaries");
+		st.log("events detBoundaries");
 		
 		// gather min and max
-		var data = st.timeline.data;
+		var data = st.events.data;
 		var min = null;
 		var max = null;
 		for (var i=0; i<data.length; i++) {
@@ -70,7 +70,7 @@ st.timeline = {
 				max = Math.max(end, max);
 			}
 		}
-		st.timeline.min = min;
-		st.timeline.max = max;
+		st.events.min = min;
+		st.events.max = max;
 	}
 };
