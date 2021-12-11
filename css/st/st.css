@@ -10,6 +10,7 @@ p {
 
 body {
 	margin: 16px;
+	overflow: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -33,21 +34,6 @@ h4 {
 	margin: 20px 0 20px 0;
 }
 
-#systemName {
-	font-weight: bold;
-	text-transform: uppercase;
-}
-
-.st-star-attr {
-	padding: 0.2em;
-}
-
-.st-star-attr label {
-	font-weight: bold;
-	padding: 0.2em;
-	text-transform: uppercase;
-}
-
 .st-button {
 	border: 2px solid #3498db;
 	color: #3498db;
@@ -63,35 +49,6 @@ h4 {
 }
 
 .st-section {
-	border-left: 1px solid #000066;
-	border-right: 1px solid #000066;
-	max-width: 600px;
-}
-
-.st-position-stars {
-	border-color: #FF8C00;
-	color: #FF8C00;
-}
-
-.st-position-inner {
-	border-color: #660000;
-	color: #660000;
-}
-
-.st-position-goldilocks {
-	border-color: #006600;
-	color: #006600;
-}
-
-.st-position-outer {
-	border-color: #000066;
-	color: #000066;
-}
-
-.st-government {
-	font-style: italic;
-}
-
-.st-remove-government {
-	padding: 0 0.2em 0 0.2em;
+	border: 1px solid #000;
+	min-height: 10px;
 }
