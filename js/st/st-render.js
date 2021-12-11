@@ -147,9 +147,30 @@ st.render = {
 
 		var strokeWidth = 1;
 		
+		var group = null;
+		var timelineColor = "#00cc00";
+		var eventColor = "#0000ff";
+		var groupCount = 0;
+		
 		for (var i=0; i<data.length; i++) {
 			var datum = data[i];
 			st.log(datum);
+			
+			if (group != null && group != datum.group) {
+				groupCount++;
+				if (groupCount==1) {
+					px0+=100;
+					px1+=100;
+					px2+=100;
+					px3+=100;
+				} else {
+					px0+=340;
+					px1+=340;
+					px2+=340;
+					px3+=340;
+				}
+			}
+			group = datum.group;
 			
 			if (datum.start != datum.end) {
 				var y = (datum.start + datum.end)/2 - 1;
@@ -161,12 +182,12 @@ st.render = {
 				    .text(datum.title)
 				    .attr("font-family", "AYT Avalon")
 				    .attr("font-size", "12px")
-				    .attr("stroke", "#990000");
+				    .attr("stroke", timelineColor);
 				    
 				var y = (datum.start) - 1;
 				var ypx0 = y * verticalExaggeration + verticalMargin;
 				g.append('line')
-	    			.style("stroke", "#990000")
+	    			.style("stroke", timelineColor)
 	    			.style("stroke-width", strokeWidth)
 	    			.attr("x1", px0)
 	    			.attr("y1", ypx0)
@@ -176,7 +197,7 @@ st.render = {
 				var y = (datum.end) - 1;
 				var ypx1 = y * verticalExaggeration + verticalMargin;
 				g.append('line')
-	    			.style("stroke", "#990000")
+	    			.style("stroke", timelineColor)
 	    			.style("stroke-width", strokeWidth)
 	    			.attr("x1", px0)
 	    			.attr("y1", ypx1)
@@ -184,14 +205,44 @@ st.render = {
 	    			.attr("y2", ypx1);
 	    			
 				g.append('line')
-	    			.style("stroke", "#990000")
+	    			.style("stroke", timelineColor)
 	    			.style("stroke-width", strokeWidth)
 	    			.attr("x1", px1)
 	    			.attr("y1", ypx0)
 	    			.attr("x2", px1)
 	    			.attr("y2", ypx1); 
 
-	    	} 
+	    	} else {
+				var y = (datum.start + datum.end)/2 - 1;
+				var ypx = y * verticalExaggeration + verticalMargin;
+
+				var strokeColor = eventColor;
+				var fillColor = eventColor;
+				if (groupCount>=2) {
+					fillColor = "#ffffff";
+					strokeColor = "#ff0000";
+				}
+				
+				var text = g.append("text")
+				    .attr("x", px2)
+				    .attr("y", ypx + 4)
+				    .text(datum.title)
+				    .attr("font-family", "AYT Avalon")
+				    .attr("font-size", "10px")
+				    .attr("stroke", strokeColor)
+				    .style("stroke-width", "0.5px");
+				    
+				var y = (datum.start) - 1;
+				var ypx0 = y * verticalExaggeration + verticalMargin;
+				
+				g.append('circle')
+	    			.style("stroke", strokeColor)
+	    			.style("fill", fillColor)
+	    			.style("stroke-width", strokeWidth)
+	    			.attr("cx", px0)
+	    			.attr("cy", ypx0)
+	    			.attr("r", 2.5);
+	    	}
 		}
 	}
 };
