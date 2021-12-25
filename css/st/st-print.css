@@ -1,5 +1,12 @@
 /* st-print.css */
 
+@media print{@page {size: landscape}}
+
+body{ 
+	margin: -5% 2px 2px -5%;
+	transform:scale(.8);
+}
+
 label {
 	display: none;
 }

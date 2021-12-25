@@ -85,11 +85,7 @@ st.render = {
 			    .text(y)
 			    .attr("font-family", "AYT Avalon")
 			    .attr("font-size", "10px")
-			    .style("text-anchor", "middle")
-			    .style("opacity", 0)
-			    .transition()
-    			.delay(200)
-    			.style("opacity", 1);
+			    .style("text-anchor", "middle");
 		}
 	},
 	
