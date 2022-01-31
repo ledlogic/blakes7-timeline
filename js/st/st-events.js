@@ -14,10 +14,11 @@ st.events = {
 		st.log("loading events from csv, uri[" + uri + "]");
 		
 		var uriArr = uri.split(":");
+		var d = (new Date()).getTime();
 		var csv = uriArr[0];
 		var n = uriArr[1];
 		
-		Papa.parse(csv, {
+		Papa.parse(csv + "?d=" + d, {
 			delimiter: ",",
 			download: true,
 			header: true,
